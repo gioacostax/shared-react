@@ -43,28 +43,32 @@ const TextArea: ForwardRefRenderFunction<
   },
   ref,
 ) => {
-  const prevValue = useRef(rest.value);
-
-  // Validate keyPattern/resolver when input changes
-  const handleOnInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    if (keyPattern && event.currentTarget.value) {
-      if (keyPattern.test(event.currentTarget.value)) {
-        if (resolver) event.currentTarget.value = resolver(event.currentTarget.value);
+  const prevValue = useRef(rest.value),
+    // Validate keyPattern/resolver when input changes
+    handleOnInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
+      if (keyPattern && event.currentTarget.value) {
+        if (keyPattern.test(event.currentTarget.value)) {
+          if (resolver) {
+            event.currentTarget.value = resolver(event.currentTarget.value);
+          }
+          prevValue.current = event.currentTarget.value;
+        } else {
+          event.currentTarget.value = prevValue.current as string;
+        }
+      } else {
+        if (resolver) {
+          event.currentTarget.value = resolver(event.currentTarget.value);
+        }
         prevValue.current = event.currentTarget.value;
-      } else event.currentTarget.value = prevValue.current as string;
-    } else {
-      if (resolver) event.currentTarget.value = resolver(event.currentTarget.value);
-      prevValue.current = event.currentTarget.value;
-    }
-    onInput?.(event);
-  };
+      }
+      onInput?.(event);
+    };
 
   return (
     <label
       style={style}
       className={[
-        `flex h-fit flex-col gap-1 font-bold text-slate-800 transition-all
-        has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 dark:text-slate-300`,
+        `flex h-fit flex-col gap-1 font-bold text-slate-800 transition-all has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 dark:text-slate-300`,
         className,
       ]
         .filter(Boolean)
@@ -76,11 +80,7 @@ const TextArea: ForwardRefRenderFunction<
         style={inputStyle}
         onInput={handleOnInput}
         className={[
-          `m-0 min-h-20 w-full rounded-md border-slate-200 bg-slate-200 bg-transparent px-3
-            py-2 font-normal text-slate-950 outline-none transition-all
-            placeholder:opacity-70 focus:outline focus:outline-2 focus:outline-offset-2
-            focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50
-            dark:bg-slate-600 dark:text-slate-50`,
+          `m-0 min-h-20 w-full rounded-md border-slate-200 bg-slate-200 bg-transparent px-3 py-2 font-normal text-slate-950 outline-none transition-all placeholder:opacity-70 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-600 dark:text-slate-50`,
           inputClassName,
         ]
           .filter(Boolean)

@@ -75,30 +75,28 @@ const TextField: ForwardRefRenderFunction<
 
   return (
     <label
-      style={style}
       className={[
-        `flex h-fit flex-col gap-1 font-bold text-slate-800 transition-all
-        has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 dark:text-slate-300`,
+        `flex h-fit flex-col gap-1 font-bold text-slate-800 transition-all has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 dark:text-slate-300`,
         className,
       ]
         .filter(Boolean)
         .join(' ')}
+      style={style}
     >
       {children}
       <div className="flex min-h-10 items-center gap-2 rounded-md border-slate-200 bg-slate-200 px-3 py-2 transition-all has-[:focus]:outline has-[:focus]:outline-2 has-[:focus]:outline-offset-2 has-[:focus]:outline-blue-500 dark:bg-slate-600">
         {leading}
         <input
-          ref={ref}
-          style={inputStyle}
-          onKeyDown={handleOnKeyDown}
-          onInput={handleOnInput}
           className={[
-            `m-0 w-full bg-transparent p-0 font-normal text-slate-950 outline-none
-            placeholder:opacity-70 disabled:cursor-not-allowed disabled:opacity-50 dark:text-slate-50`,
+            `m-0 w-full bg-transparent p-0 font-normal text-slate-950 outline-none placeholder:opacity-70 disabled:cursor-not-allowed disabled:opacity-50 dark:text-slate-50`,
             inputClassName,
           ]
             .filter(Boolean)
             .join(' ')}
+          onInput={handleOnInput}
+          onKeyDown={handleOnKeyDown}
+          ref={ref}
+          style={inputStyle}
           {...rest}
         />
         {trailing}
