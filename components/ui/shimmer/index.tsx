@@ -19,10 +19,10 @@ interface Props {
  */
 const Shimmer: FC<Props> = ({ height = '2em', style, width = '100%', ...rest }) => (
   <div
-    style={{ height, width, ...style }}
     className={[styles.shimmer, rest.className].filter(Boolean).join(' ')}
     data-testid={rest['data-testid']}
     data-theme
+    style={{ height, width, ...style }}
   />
 );
 

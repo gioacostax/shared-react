@@ -7,7 +7,7 @@ import { act, fireEvent, render, screen } from '@testing-library/react';
 import Select from './index';
 
 const testSelect = (
-  element: Element | Node | Document | Window,
+  element: Document | Element | Node | Window,
   option: string,
   click?: boolean,
 ) => {
@@ -46,8 +46,8 @@ describe('<Select />', () => {
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
+        valueKey="id"
       />,
     );
 
@@ -62,8 +62,8 @@ describe('<Select />', () => {
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
+        valueKey="id"
       />,
     );
 
@@ -78,13 +78,13 @@ describe('<Select />', () => {
   test('renders and click on container', () => {
     render(
       <Select
+        isSearchable
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
-        isSearchable
+        valueKey="id"
       />,
     );
 
@@ -99,14 +99,14 @@ describe('<Select />', () => {
   test('renders and keyUp on container', () => {
     render(
       <Select
+        isSearchable
+        label="label"
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
-        label="label"
-        isSearchable
+        valueKey="id"
       />,
     );
 
@@ -127,12 +127,12 @@ describe('<Select />', () => {
     const onChange = vi.fn();
     render(
       <Select
+        onChange={onChange}
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
         valueKey="id"
-        onChange={onChange}
       />,
     );
 
@@ -147,13 +147,13 @@ describe('<Select />', () => {
     const onChange = vi.fn();
     render(
       <Select
+        getOptionRender={({ value }) => value}
+        onChange={onChange}
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
         valueKey="id"
-        getOptionRender={({ value }) => value}
-        onChange={onChange}
       />,
     );
 
@@ -167,13 +167,13 @@ describe('<Select />', () => {
   test('renders and focus', () => {
     render(
       <Select
+        data-testid="select"
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
-        data-testid="select"
+        valueKey="id"
       />,
     );
 
@@ -187,13 +187,13 @@ describe('<Select />', () => {
   test('renders and blur', () => {
     render(
       <Select
+        data-testid="select"
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
-        data-testid="select"
+        valueKey="id"
       />,
     );
 
@@ -207,13 +207,13 @@ describe('<Select />', () => {
   test('renders with property: "id"', () => {
     render(
       <Select
+        id="id"
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
-        id="id"
+        valueKey="id"
       />,
     );
 
@@ -225,13 +225,13 @@ describe('<Select />', () => {
   test('renders with property: "leading"', () => {
     render(
       <Select
+        leading="leading"
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
-        leading="leading"
+        valueKey="id"
       />,
     );
 
@@ -242,13 +242,13 @@ describe('<Select />', () => {
   test('renders with property: "helper"', () => {
     render(
       <Select
+        helper="helper"
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
-        helper="helper"
+        valueKey="id"
       />,
     );
 
@@ -259,13 +259,13 @@ describe('<Select />', () => {
   test('renders with property: "error"', () => {
     render(
       <Select
+        error="error"
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
-        error="error"
+        valueKey="id"
       />,
     );
 
@@ -274,7 +274,7 @@ describe('<Select />', () => {
   });
 
   test('renders with property: "emptyLabel"', () => {
-    render(<Select options={[]} valueKey="id" emptyLabel="Empty" />);
+    render(<Select emptyLabel="Empty" options={[]} valueKey="id" />);
     fireEvent.click(screen.getByText('seleccionar...'));
     screen.getByText('Empty');
   });
@@ -282,13 +282,13 @@ describe('<Select />', () => {
   test('renders with property: "isSearchable"', () => {
     render(
       <Select
+        isSearchable
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
-        isSearchable
+        valueKey="id"
       />,
     );
 
@@ -303,14 +303,14 @@ describe('<Select />', () => {
   test('renders with property: "isSearchable" and "searchKey"', () => {
     render(
       <Select
+        isSearchable
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
         searchKey="value"
-        isSearchable
+        valueKey="id"
       />,
     );
 
@@ -325,14 +325,14 @@ describe('<Select />', () => {
   test('renders with property: "isSearchable" and "getOptionSearch"', () => {
     render(
       <Select
+        getOptionSearch={({ value }) => value}
+        isSearchable
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
-        getOptionSearch={({ value }) => value}
-        isSearchable
+        valueKey="id"
       />,
     );
 
@@ -347,14 +347,14 @@ describe('<Select />', () => {
   test('renders with property: "isClearable"', () => {
     render(
       <Select
+        data-testid="select"
+        isClearable
         options={[
           { id: '1', value: 'Option A' },
           { id: '2', value: 'Option B' },
         ]}
-        valueKey="id"
         renderKey="value"
-        isClearable
-        data-testid="select"
+        valueKey="id"
       />,
     );
 

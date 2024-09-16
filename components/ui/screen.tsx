@@ -1,13 +1,12 @@
 /**
- * Project vite
+ * Shared UI Components
  */
 
 import { type FC, type PropsWithChildren, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
-import styles from './styles.module.scss';
-
 interface Props {
+  childrenClassName?: string;
   className?: string;
   closeOnClickOutside?: boolean;
   'data-testid'?: string;
@@ -16,10 +15,11 @@ interface Props {
 }
 
 /**
- * Screen component
+ * Renders a customizable screen component.
  */
 const Screen: FC<PropsWithChildren<Props>> = ({
   children,
+  childrenClassName,
   className,
   closeOnClickOutside,
   isVisible,
@@ -27,7 +27,7 @@ const Screen: FC<PropsWithChildren<Props>> = ({
   ...rest
 }) => {
   const childRef = useRef<HTMLDivElement>(null);
-  const screenRef = useRef<HTMLDivElement>(null);
+  const screenRef = useRef<HTMLDialogElement>(null);
 
   // Close modal when clicked outside
   useEffect(() => {
@@ -49,16 +49,28 @@ const Screen: FC<PropsWithChildren<Props>> = ({
 
   return isVisible
     ? createPortal(
-        <div
-          className={[styles.screen, className].filter(Boolean).join(' ')}
-          data-testid={rest['data-testid']}
-          data-theme
-          ref={screenRef}
-        >
-          <div ref={childRef}>{children}</div>
-        </div>,
-        document.getElementById('root') as Element,
+        <>
+          <span className="absolute left-0 top-0 z-30 h-full w-full bg-black/5 backdrop-blur-sm" />
+          <dialog
+            className={[
+              'absolute left-0 top-0 z-50 flex h-full w-full animate-fade items-center justify-center bg-transparent p-6',
+              className,
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            data-screen
+            data-testid={rest['data-testid']}
+            open
+            ref={screenRef}
+          >
+            <div className={childrenClassName} ref={childRef}>
+              {children}
+            </div>
+          </dialog>
+        </>,
+        document.body,
       )
     : null;
 };
+
 export default Screen;

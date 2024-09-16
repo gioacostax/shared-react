@@ -55,7 +55,7 @@ describe('<TextField />', () => {
     expect(enterEvent.defaultPrevented).toBe(false);
 
     /* Actions */
-    rerender(<TextField preventDefault data-testid="input" />);
+    rerender(<TextField data-testid="input" preventDefault />);
     fireEvent(screen.getByTestId<HTMLInputElement>('input'), enterEvent);
 
     /* Assertions */
@@ -63,7 +63,7 @@ describe('<TextField />', () => {
   });
 
   test('renders with property: "keyPattern"', () => {
-    render(<TextField keyPattern={/^\d*$/} data-testid="input" />);
+    render(<TextField data-testid="input" keyPattern={/^\d*$/} />);
 
     /* Actions */
     fireEvent.input(screen.getByTestId<HTMLInputElement>('input'), { target: { value: '1234' } });
@@ -85,7 +85,7 @@ describe('<TextField />', () => {
   });
 
   test('renders with property: "resolver"', () => {
-    render(<TextField resolver={(value) => `${value}-static`} data-testid="input" />);
+    render(<TextField data-testid="input" resolver={(value) => `${value}-static`} />);
 
     /* Actions */
     fireEvent.input(screen.getByTestId<HTMLInputElement>('input'), { target: { value: 'text' } });
@@ -96,7 +96,7 @@ describe('<TextField />', () => {
 
   test('renders with property: "keyPattern" & "resolver"', () => {
     render(
-      <TextField keyPattern={/^\d*$/} resolver={(value) => `${value}.00`} data-testid="input" />,
+      <TextField data-testid="input" keyPattern={/^\d*$/} resolver={(value) => `${value}.00`} />,
     );
 
     /* Actions */

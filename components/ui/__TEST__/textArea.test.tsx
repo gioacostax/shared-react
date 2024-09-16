@@ -29,7 +29,7 @@ describe('<TextArea />', () => {
   });
 
   test('renders with property: "keyPattern"', () => {
-    render(<TextArea keyPattern={/^\d*$/} data-testid="input" />);
+    render(<TextArea data-testid="input" keyPattern={/^\d*$/} />);
 
     /* Actions */
     fireEvent.input(screen.getByTestId<HTMLInputElement>('input'), { target: { value: '1234' } });
@@ -51,7 +51,7 @@ describe('<TextArea />', () => {
   });
 
   test('renders with property: "resolver"', () => {
-    render(<TextArea resolver={(value) => `${value}-static`} data-testid="input" />);
+    render(<TextArea data-testid="input" resolver={(value) => `${value}-static`} />);
 
     /* Actions */
     fireEvent.input(screen.getByTestId<HTMLInputElement>('input'), { target: { value: 'text' } });
@@ -62,7 +62,7 @@ describe('<TextArea />', () => {
 
   test('renders with property: "keyPattern" & "resolver"', () => {
     render(
-      <TextArea keyPattern={/^\d*$/} resolver={(value) => `${value}.00`} data-testid="input" />,
+      <TextArea data-testid="input" keyPattern={/^\d*$/} resolver={(value) => `${value}.00`} />,
     );
 
     /* Actions */

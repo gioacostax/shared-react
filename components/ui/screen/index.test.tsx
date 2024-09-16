@@ -28,7 +28,7 @@ describe('<Screen />', () => {
   test('renders and click outside', () => {
     const onClose = vi.fn();
     render(
-      <Screen isVisible onClose={onClose} data-testid="screen">
+      <Screen data-testid="screen" isVisible onClose={onClose}>
         Children
       </Screen>,
     );
@@ -43,7 +43,7 @@ describe('<Screen />', () => {
   test('renders with property: "closeOnClickOutside" -> click outside', () => {
     const onClose = vi.fn();
     render(
-      <Screen isVisible closeOnClickOutside onClose={onClose} data-testid="screen">
+      <Screen closeOnClickOutside data-testid="screen" isVisible onClose={onClose}>
         Children
       </Screen>,
     );
