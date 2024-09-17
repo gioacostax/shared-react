@@ -1,4 +1,4 @@
-import AxiosService from '..';
+import AxiosService from '../index';
 
 ///////////////////// MOCKING /////////////////////
 vi.mock('axios', () => ({
@@ -10,11 +10,9 @@ vi.mock('axios', () => ({
 }));
 ///////////////////////////////////////////////////
 
-describe('class: AxiosService', () => {
-  test('execute: fetch', async () => {
-    const PRESET = new AxiosService({ key: 'key' });
+test('AxiosService and execute fetch', async () => {
+  const PRESET = new AxiosService({ key: 'key' });
 
-    /* Assertions */
-    await expect(PRESET.fetch()).resolves.toBe('mock');
-  });
+  /* Assertions */
+  await expect(PRESET.fetch()).resolves.toBe('mock');
 });

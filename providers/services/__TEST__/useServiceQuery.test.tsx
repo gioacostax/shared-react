@@ -1,10 +1,6 @@
-import React, { type FC, type PropsWithChildren } from 'react';
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { renderHook, waitFor } from '@testing-library/react';
 
-import { AxiosService } from '../axios';
-import useServiceQuery from '../useServiceQuery';
+import ServicesProvider, { AxiosService, useServiceQuery } from '../index';
 
 ///////////////////// MOCKING /////////////////////
 vi.mock('axios', () => ({
@@ -17,19 +13,13 @@ vi.mock('axios', () => ({
 }));
 ///////////////////////////////////////////////////
 
-const QueryProvider: FC<PropsWithChildren> = ({ children }) => (
-  <QueryClientProvider client={new QueryClient()}>{children}</QueryClientProvider>
-);
+test('useServiceQuery hook', async () => {
+  const { result } = renderHook(() => useServiceQuery(new AxiosService({ key: 'key' })), {
+    wrapper: ServicesProvider,
+  });
 
-describe('useServiceQuery hook', () => {
-  test('renders hook', async () => {
-    const { result } = renderHook(() => useServiceQuery(new AxiosService({ key: 'key' })), {
-      wrapper: QueryProvider,
-    });
-
-    /* Assertions */
-    await waitFor(() => {
-      expect(result.current.data).toBe('mock');
-    });
+  /* Assertions */
+  await waitFor(() => {
+    expect(result.current.data).toBe('mock');
   });
 });

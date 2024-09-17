@@ -6,7 +6,6 @@ export { AxiosService } from './axios';
 export { default as useServiceMutation } from './useServiceMutation';
 export { default as useServiceQuery } from './useServiceQuery';
 
-///////////////////// React Query Services /////////////////////
 const QUERY_CONFIG: QueryClientConfig = {
   defaultOptions: {
     mutations: {
@@ -24,6 +23,5 @@ const QUERY_CONFIG: QueryClientConfig = {
 const ServicesProvider: FC<PropsWithChildren> = ({ children }) => (
   <QueryClientProvider client={new QueryClient(QUERY_CONFIG)}>{children}</QueryClientProvider>
 );
-////////////////////////////////////////////////////////////////
 
 export default ServicesProvider;

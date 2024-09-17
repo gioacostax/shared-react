@@ -22,21 +22,8 @@ const useServiceMutation = <
 >(
   config: AxiosService<P, D, R>,
   options?: {
-    onSettled?: (
-      data: AxiosResponse<R, D> | undefined,
-      error: AxiosError<R, D> | null,
-      variables: Partial<AxiosCustomConfig<P, D>>,
-      context: unknown,
-    ) => unknown;
-    onSuccess?: (
-      data: AxiosResponse<R, D>,
-      variables: Partial<AxiosCustomConfig<P, D>>,
-      context: unknown,
-    ) => unknown;
-  } & Omit<
-    UseMutationOptions<AxiosResponse<R, D>, AxiosError<R, D>, Partial<AxiosCustomConfig<P, D>>>,
-    'onSettled' | 'onSuccess'
-  >,
+    axios?: AxiosCustomConfig<P, D>;
+  } & UseMutationOptions<AxiosResponse<R, D>, AxiosError<R, D>, Partial<AxiosCustomConfig<P, D>>>,
 ) => {
   const hookData = config.usePayloadHook?.();
 
@@ -47,15 +34,7 @@ const useServiceMutation = <
         ...(await hookData?.()),
         ...variables,
       }),
-    mutationKey: [
-      ...(options?.mutationKey ?? [config.key]),
-      config.instance?.defaults.url,
-      config.instance?.defaults.params,
-      config.instance?.defaults.data,
-    ].filter(Boolean),
-    onSettled: (data, error, variables, context) =>
-      options?.onSettled?.(data, error, variables, context),
-    onSuccess: (data, variables, context) => options?.onSuccess?.(data, variables, context),
+    mutationKey: options?.mutationKey ?? [config.key],
   });
 };
 

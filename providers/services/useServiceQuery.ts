@@ -27,15 +27,10 @@ const useServiceQuery = <P extends ServiceParams, D extends ServiceData, R exten
     ...options,
     queryFn: async () =>
       config.fetch({
-        ...options?.axios,
         ...(await hookData?.()),
+        ...options?.axios,
       }),
-    queryKey: [
-      ...(options?.queryKey ?? [config.key]),
-      config.instance?.defaults.url,
-      config.instance?.defaults.params,
-      config.instance?.defaults.data,
-    ].filter(Boolean),
+    queryKey: options?.queryKey ?? [config.key],
   });
 };
 
