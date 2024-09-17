@@ -3,84 +3,60 @@
  * more info in https://tanstack.com/query/latest/docs/framework/react/overview/
  */
 
-import {
-  type UseMutationOptions,
-  type UseMutationResult,
-  useMutation,
-} from '@tanstack/react-query';
+import type { AxiosError, AxiosResponse } from 'axios';
 
-import type { FetchServicePreset } from './lib/fetchService';
-import type { ServiceBody, ServiceParams, ServiceResponse } from './lib/types';
-import type { FnPayload } from './types';
+import { type UseMutationOptions, useMutation } from '@tanstack/react-query';
+
+import type {
+  AxiosCustomConfig,
+  AxiosService,
+  ServiceData,
+  ServiceParams,
+  ServiceResponse,
+} from './axios';
 
 const useServiceMutation = <
   P extends ServiceParams,
-  B extends ServiceBody,
+  D extends ServiceData,
   R extends ServiceResponse,
-  D = R,
-  E = R,
 >(
-  setup: FetchServicePreset<P, B, R, D, E>,
+  config: AxiosService<P, D, R>,
   options?: {
     onSettled?: (
-      data: D extends R ? R : D | undefined,
-      error: Error | null,
-      variables: FnPayload<P, B, R, D, E>,
+      data: AxiosResponse<R, D> | undefined,
+      error: AxiosError<R, D> | null,
+      variables: Partial<AxiosCustomConfig<P, D>>,
       context: unknown,
     ) => unknown;
     onSuccess?: (
-      data: D extends R ? R : D,
-      variables: FnPayload<P, B, R, D, E>,
+      data: AxiosResponse<R, D>,
+      variables: Partial<AxiosCustomConfig<P, D>>,
       context: unknown,
     ) => unknown;
   } & Omit<
-    UseMutationOptions<D extends R ? R : D, Error, FnPayload<P, B, R, D, E>>,
+    UseMutationOptions<AxiosResponse<R, D>, AxiosError<R, D>, Partial<AxiosCustomConfig<P, D>>>,
     'onSettled' | 'onSuccess'
   >,
 ) => {
-  // Add aditionals hooks here...
-  const hookData = setup.usePayloadHook?.();
+  const hookData = config.usePayloadHook?.();
 
-  const mutation = useMutation<D extends R ? R : D, Error, FnPayload<P, B, R, D, E>>({
+  return useMutation<AxiosResponse<R, D>, AxiosError<R, D>, Partial<AxiosCustomConfig<P, D>>>({
     ...options,
-    mutationFn: async (fnPayload) =>
-      setup.fetch({
-        ...fnPayload,
+    mutationFn: async (variables) =>
+      config.fetch({
         ...(await hookData?.()),
-      }) as Promise<D extends R ? R : D>,
-    mutationKey: setup.queryKey.concat(options?.mutationKey).filter(Boolean),
-    onSettled: (data, error, fnPayload, context) =>
-      options?.onSettled?.(
-        (setup.parseData?.(data as R) ?? data) as D extends R ? R : D,
-        error,
-        fnPayload,
-        context,
-      ),
-    onSuccess: (data, fnPayload, context) =>
-      options?.onSuccess?.(
-        (setup.parseData?.(data as R) ?? data) as D extends R ? R : D,
-        fnPayload,
-        context,
-      ),
-  });
-
-  return {
-    ...mutation,
-    data: (mutation.data && setup.parseData
-      ? setup.parseData(mutation.data as R)
-      : mutation.data) as D extends R ? R : D,
-    mutateAsync: (fnPayload, options) =>
-      new Promise((resolve, rejects: Reject<Error>) => {
-        mutation
-          .mutateAsync(fnPayload, options)
-          .then((data) => {
-            resolve((setup.parseData ? setup.parseData(data as R) : data) as D extends R ? R : D);
-          })
-          .catch((err: Error) => {
-            rejects(err);
-          });
+        ...variables,
       }),
-  } as UseMutationResult<D extends R ? R : D, Error, FnPayload<P, B, R, D, E>>;
+    mutationKey: [
+      ...(options?.mutationKey ?? [config.key]),
+      config.instance?.defaults.url,
+      config.instance?.defaults.params,
+      config.instance?.defaults.data,
+    ].filter(Boolean),
+    onSettled: (data, error, variables, context) =>
+      options?.onSettled?.(data, error, variables, context),
+    onSuccess: (data, variables, context) => options?.onSuccess?.(data, variables, context),
+  });
 };
 
 export default useServiceMutation;

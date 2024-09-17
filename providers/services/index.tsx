@@ -2,7 +2,7 @@ import React, { type FC, type PropsWithChildren } from 'react';
 
 import { type QueryClientConfig, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-export { FetchServicePreset } from './lib/fetchService';
+export { AxiosService } from './axios';
 export { default as useServiceMutation } from './useServiceMutation';
 export { default as useServiceQuery } from './useServiceQuery';
 

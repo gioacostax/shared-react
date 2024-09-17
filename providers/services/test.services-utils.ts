@@ -1,9 +1,9 @@
 /**
- * This file can be used to define Vitest utils
+ * This file can be used to define Services utils
  */
 
-const useServiceQueryMockFn = vi.fn<(preset: { queryKey: unknown[] }) => unknown>();
-const useServiceMutationMockFn = vi.fn<(preset: { queryKey: unknown[] }) => unknown>();
+const useServiceQueryMockFn = vi.fn<(preset: { key: string }) => unknown>();
+const useServiceMutationMockFn = vi.fn<(preset: { key: string }) => unknown>();
 vi.mock('./index', async (requireActual) => ({
   ...(await requireActual<object>()),
   useServiceMutation: useServiceMutationMockFn,
@@ -11,15 +11,18 @@ vi.mock('./index', async (requireActual) => ({
 }));
 
 export const useServiceQueryMock = <
-  P extends import('./lib/types').ServiceParams,
-  B extends import('./lib/types').ServiceBody,
-  R extends import('./lib/types').ServiceResponse,
-  D = R,
-  E = R,
+  P extends import('./axios').ServiceParams,
+  D extends import('./axios').ServiceData,
+  R extends import('./axios').ServiceResponse,
 >(
   results?: {
-    preset: import('.').FetchServicePreset<P, B, R, D, E>;
-    result: Partial<import('@tanstack/react-query').UseQueryResult<Partial<D extends R ? R : D>>>;
+    preset: import('./index').AxiosService<P, D, R>;
+    result: Partial<
+      import('@tanstack/react-query').UseQueryResult<
+        import('axios').AxiosResponse<R, D>,
+        import('axios').AxiosError<R, D>
+      >
+    >;
   }[],
 ) =>
   useServiceQueryMockFn.mockImplementation(
@@ -27,24 +30,25 @@ export const useServiceQueryMock = <
       (results
         ?.slice()
         .reverse()
-        .find(({ preset }) => _preset.queryKey.join() === preset.queryKey.join())?.result ??
-        {}) as import('@tanstack/react-query').UseQueryResult<Partial<D extends R ? R : D>>,
+        .find(({ preset }) => _preset.key === preset.key)?.result ??
+        {}) as import('@tanstack/react-query').UseQueryResult<
+        import('axios').AxiosResponse<R, D>,
+        import('axios').AxiosError<R, D>
+      >,
   );
 
 export const useServiceMutationMock = <
-  P extends import('./lib/types').ServiceParams,
-  B extends import('./lib/types').ServiceBody,
-  R extends import('./lib/types').ServiceResponse,
-  D = R,
-  E = R,
+  P extends import('./axios').ServiceParams,
+  D extends import('./axios').ServiceData,
+  R extends import('./axios').ServiceResponse,
 >(
   results?: {
-    preset: import('.').FetchServicePreset<P, B, R, D, E>;
+    preset: import('./index').AxiosService<P, D, R>;
     result: Partial<
       import('@tanstack/react-query').UseMutationResult<
-        Partial<D extends R ? R : D>,
-        Error,
-        import('./types').FnPayload<P, B, R, D, E>
+        import('axios').AxiosResponse<R, D>,
+        import('axios').AxiosError<R, D>,
+        Partial<import('./axios').AxiosCustomConfig<P, D>>
       >
     >;
   }[],
@@ -54,10 +58,10 @@ export const useServiceMutationMock = <
       (results
         ?.slice()
         .reverse()
-        .find(({ preset }) => _preset.queryKey.join() === preset.queryKey.join())?.result ??
+        .find(({ preset }) => _preset.key === preset.key)?.result ??
         {}) as import('@tanstack/react-query').UseMutationResult<
-        Partial<D extends R ? R : D>,
-        Error,
-        import('./types').FnPayload<P, B, R, D, E>
+        import('axios').AxiosResponse<R, D>,
+        import('axios').AxiosError<R, D>,
+        Partial<import('./axios').AxiosCustomConfig<P, D>>
       >,
   );

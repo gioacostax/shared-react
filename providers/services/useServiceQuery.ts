@@ -3,36 +3,39 @@
  * more info in https://tanstack.com/query/latest/docs/framework/react/overview/
  */
 
+import type { AxiosError, AxiosResponse } from 'axios';
+
 import { type UseQueryOptions, useQuery } from '@tanstack/react-query';
 
-import type { FetchServicePreset } from './lib/fetchService';
-import type { ServiceBody, ServiceParams, ServiceResponse } from './lib/types';
-import type { FnPayload } from './types';
+import type {
+  AxiosCustomConfig,
+  AxiosService,
+  ServiceData,
+  ServiceParams,
+  ServiceResponse,
+} from './axios';
 
-const useServiceQuery = <
-  P extends ServiceParams,
-  B extends ServiceBody,
-  R extends ServiceResponse,
-  D = R,
-  E = R,
->(
-  setup: FetchServicePreset<P, B, R, D, E>,
+const useServiceQuery = <P extends ServiceParams, D extends ServiceData, R extends ServiceResponse>(
+  config: AxiosService<P, D, R>,
   options?: {
-    fnPayload?: FnPayload<P, B, R, D, E>;
-  } & Partial<UseQueryOptions<R, Error, D>>,
+    axios?: AxiosCustomConfig<P, D>;
+  } & Partial<UseQueryOptions<AxiosResponse<R, D>, AxiosError<R, D>>>,
 ) => {
-  // Add aditionals hooks here...
-  const hookData = setup.usePayloadHook?.();
+  const hookData = config.usePayloadHook?.();
 
-  return useQuery<R, Error, D>({
+  return useQuery<AxiosResponse<R, D>, AxiosError<R, D>>({
     ...options,
     queryFn: async () =>
-      setup.fetch({
-        ...options?.fnPayload,
-        ...(await hookData?.()), // FIX: HookData replaces all the data in fnPayload
+      config.fetch({
+        ...options?.axios,
+        ...(await hookData?.()),
       }),
-    queryKey: setup.queryKey.concat(options?.queryKey).filter(Boolean),
-    select: setup.parseData,
+    queryKey: [
+      ...(options?.queryKey ?? [config.key]),
+      config.instance?.defaults.url,
+      config.instance?.defaults.params,
+      config.instance?.defaults.data,
+    ].filter(Boolean),
   });
 };
 
