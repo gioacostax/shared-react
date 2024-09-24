@@ -1,28 +1,26 @@
 /**
- * Project vite
+ * Shared UI Components
  */
+
+import React from 'react';
 
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import Screen from './index';
+import Screen from '../screen';
 
 describe('<Screen />', () => {
-  beforeEach(() => {
-    render(<div id="root" />);
-  });
-
   test('renders', () => {
-    render(<Screen>Children</Screen>);
+    render(<Screen>Test</Screen>);
 
     /* Assertions */
-    expect(screen.queryByText('Children')).toBeNull();
+    expect(screen.queryByText('Test')).toBeNull();
   });
 
-  test('renders with property: "isVisible"', () => {
-    render(<Screen isVisible>Children</Screen>);
+  test('renders with props: isVisible', () => {
+    render(<Screen isVisible>Test</Screen>);
 
     /* Assertions */
-    screen.getByText('Children');
+    screen.getByText('Test');
   });
 
   test('renders and click outside', () => {

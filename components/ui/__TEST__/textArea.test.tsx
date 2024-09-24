@@ -2,6 +2,8 @@
  * Shared UI Components
  */
 
+import React from 'react';
+
 import { fireEvent, render, screen } from '@testing-library/react';
 
 import TextArea from '../textArea';

@@ -2,7 +2,7 @@
  * Shared UI Components
  */
 
-import { type FC, type PropsWithChildren, useEffect, useRef } from 'react';
+import React, { type FC, type PropsWithChildren, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
 interface Props {
@@ -53,7 +53,7 @@ const Screen: FC<PropsWithChildren<Props>> = ({
           <span className="absolute left-0 top-0 z-30 h-full w-full bg-black/5 backdrop-blur-sm" />
           <dialog
             className={[
-              'absolute left-0 top-0 z-50 flex h-full w-full animate-fade items-center justify-center bg-transparent p-6',
+              'animate-fadeIn absolute left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-transparent p-6',
               className,
             ]
               .filter(Boolean)

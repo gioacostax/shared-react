@@ -2,7 +2,7 @@
  * Shared UI Components
  */
 
-import {
+import React, {
   type ChangeEvent,
   type ComponentPropsWithoutRef,
   type CSSProperties,

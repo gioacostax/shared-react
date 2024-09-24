@@ -2,6 +2,8 @@
  * Shared UI Components
  */
 
+import React from 'react';
+
 import { render, screen } from '@testing-library/react';
 
 import Radio from '../radio';
@@ -12,5 +14,23 @@ describe('<Radio />', () => {
 
     /* Assertions */
     screen.getByText('Label');
+  });
+
+  test('renders with property: "isError"', () => {
+    render(<Radio isError>Label</Radio>);
+
+    /* Assertions */
+    expect(screen.getByText('Label').getAttribute('data-error')).toBe('true');
+  });
+
+  test('renders with property: "indeterminate"', () => {
+    render(
+      <Radio data-testid="test" indeterminate>
+        Label
+      </Radio>,
+    );
+
+    /* Assertions */
+    expect(screen.getByTestId('test').getAttribute('data-indeterminate')).toBe('true');
   });
 });

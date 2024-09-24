@@ -2,7 +2,7 @@
  * Shared UI Components
  */
 
-import {
+import React, {
   type ComponentPropsWithoutRef,
   type CSSProperties,
   type ForwardRefRenderFunction,
@@ -49,7 +49,7 @@ const Radio: ForwardRefRenderFunction<
       ]
         .filter(Boolean)
         .join(' ')}
-      data-indeterminate={indeterminate}
+      data-indeterminate={!!indeterminate}
       ref={ref}
       style={inputStyle}
       type="radio"
