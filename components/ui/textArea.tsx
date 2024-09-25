@@ -23,7 +23,7 @@ interface Props {
 }
 
 /**
- * Renders a customizable textAield component.
+ * Renders a customizable textArea component.
  */
 const TextArea: ForwardRefRenderFunction<
   HTMLTextAreaElement,

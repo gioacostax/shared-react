@@ -15,4 +15,32 @@ describe('<Button />', () => {
     /* Assertions */
     screen.getByText('Action');
   });
+
+  test('renders with property variant: "text"', () => {
+    render(<Button variant="text">Action</Button>);
+
+    /* Assertions */
+    screen.getByText('Action');
+  });
+
+  test('renders with property variant: "secondary"', () => {
+    render(<Button variant="secondary">Action</Button>);
+
+    /* Assertions */
+    screen.getByText('Action');
+  });
+
+  test('renders with property variant: "ghost"', () => {
+    render(<Button variant="ghost">Action</Button>);
+
+    /* Assertions */
+    screen.getByText('Action');
+  });
+
+  test('renders with property variant: "outline"', () => {
+    render(<Button variant="outline">Action</Button>);
+
+    /* Assertions */
+    screen.getByText('Action');
+  });
 });

@@ -7,7 +7,7 @@ import { type ReactNode, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
 
 /**
- * Create a toast element
+ * Create a customizable toast element.
  */
 const useToast = (parentId = 'root') => {
   const addToast = useCallback(
