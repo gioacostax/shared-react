@@ -5,9 +5,9 @@ export type ServiceData = object | BodyInit;
 export type ServiceResponse = boolean | number | object | string | null | undefined;
 
 export interface AxiosCustomConfig<P, D> extends AxiosRequestConfig<D> {
-  key: string;
-  params?: P | URLSearchParams;
-  useConfigHook?: () => () => Promise<Omit<AxiosCustomConfig<P, D>, 'useConfigHook'>>;
+  readonly key: string;
+  readonly params?: P | URLSearchParams;
+  readonly useConfigHook?: () => () => Promise<Omit<AxiosCustomConfig<P, D>, 'useConfigHook'>>;
 }
 
 export class AxiosService<
