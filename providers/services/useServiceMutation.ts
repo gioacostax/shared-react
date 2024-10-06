@@ -22,7 +22,7 @@ const useServiceMutation = <
 >(
   config: AxiosService<P, D, R>,
   options?: {
-    axios?: AxiosCustomConfig<P, D>;
+    axios?: Partial<AxiosCustomConfig<P, D>>;
   } & UseMutationOptions<AxiosResponse<R, D>, AxiosError<R, D>, Partial<AxiosCustomConfig<P, D>>>,
 ) => {
   const hookData = config.usePayloadHook?.();

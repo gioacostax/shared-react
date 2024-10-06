@@ -18,7 +18,7 @@ import type {
 const useServiceQuery = <P extends ServiceParams, D extends ServiceData, R extends ServiceResponse>(
   config: AxiosService<P, D, R>,
   options?: {
-    axios?: AxiosCustomConfig<P, D>;
+    axios?: Partial<AxiosCustomConfig<P, D>>;
   } & Partial<UseQueryOptions<AxiosResponse<R, D>, AxiosError<R, D>>>,
 ) => {
   const hookData = config.usePayloadHook?.();
