@@ -13,11 +13,25 @@ vi.mock('axios', () => ({
 }));
 ///////////////////////////////////////////////////
 
-test('useServiceMutation hook', async () => {
-  const { result } = renderHook(() => useServiceMutation(new AxiosService({ key: 'key' })), {
-    wrapper: ServicesProvider,
+describe('useServiceMutation hook', () => {
+  test('renders hook', async () => {
+    const { result } = renderHook(() => useServiceMutation(new AxiosService({ key: 'key' })), {
+      wrapper: ServicesProvider,
+    });
+
+    /* Assertions */
+    await expect(result.current.mutateAsync({})).resolves.toBe('mock');
   });
 
-  /* Assertions */
-  await expect(result.current.mutateAsync({})).resolves.toBe('mock');
+  test('renders hook with mock', async () => {
+    const { result } = renderHook(
+      () => useServiceMutation(new AxiosService({ key: 'key' }), { mock: { data: 'mock option' } }),
+      {
+        wrapper: ServicesProvider,
+      },
+    );
+
+    /* Assertions */
+    await expect(result.current.mutateAsync({})).resolves.toEqual({ data: 'mock option' });
+  });
 });

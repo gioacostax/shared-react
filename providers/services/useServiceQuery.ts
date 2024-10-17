@@ -18,7 +18,8 @@ import type {
 const useServiceQuery = <P extends ServiceParams, D extends ServiceData, R extends ServiceResponse>(
   config: AxiosService<P, D, R>,
   options?: {
-    axios?: Partial<AxiosCustomConfig<P, D>>;
+    axios?: AxiosCustomConfig<P, D>;
+    mock?: Partial<AxiosResponse<R, D>>;
   } & Partial<UseQueryOptions<AxiosResponse<R, D>, AxiosError<R, D>>>,
 ) => {
   const hookData = config.usePayloadHook?.();
@@ -26,6 +27,7 @@ const useServiceQuery = <P extends ServiceParams, D extends ServiceData, R exten
   return useQuery<AxiosResponse<R, D>, AxiosError<R, D>>({
     ...options,
     queryFn: async () =>
+      (options?.mock as AxiosResponse<R, D> | undefined) ??
       config.fetch({
         ...(await hookData?.()),
         ...options?.axios,

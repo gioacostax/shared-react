@@ -22,7 +22,8 @@ const useServiceMutation = <
 >(
   config: AxiosService<P, D, R>,
   options?: {
-    axios?: Partial<AxiosCustomConfig<P, D>>;
+    axios?: AxiosCustomConfig<P, D>;
+    mock?: Partial<AxiosResponse<R, D>>;
   } & UseMutationOptions<AxiosResponse<R, D>, AxiosError<R, D>, Partial<AxiosCustomConfig<P, D>>>,
 ) => {
   const hookData = config.usePayloadHook?.();
@@ -30,6 +31,7 @@ const useServiceMutation = <
   return useMutation<AxiosResponse<R, D>, AxiosError<R, D>, Partial<AxiosCustomConfig<P, D>>>({
     ...options,
     mutationFn: async (variables) =>
+      (options?.mock as AxiosResponse<R, D> | undefined) ??
       config.fetch({
         ...(await hookData?.()),
         ...variables,

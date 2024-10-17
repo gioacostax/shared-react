@@ -13,13 +13,29 @@ vi.mock('axios', () => ({
 }));
 ///////////////////////////////////////////////////
 
-test('useServiceQuery hook', async () => {
-  const { result } = renderHook(() => useServiceQuery(new AxiosService({ key: 'key' })), {
-    wrapper: ServicesProvider,
+describe('useServiceQuery hook', () => {
+  test('renders hook', async () => {
+    const { result } = renderHook(() => useServiceQuery(new AxiosService({ key: 'key' })), {
+      wrapper: ServicesProvider,
+    });
+
+    /* Assertions */
+    await waitFor(() => {
+      expect(result.current.data).toBe('mock');
+    });
   });
 
-  /* Assertions */
-  await waitFor(() => {
-    expect(result.current.data).toBe('mock');
+  test('renders hook with mock', async () => {
+    const { result } = renderHook(
+      () => useServiceQuery(new AxiosService({ key: 'key' }), { mock: { data: 'mock option' } }),
+      {
+        wrapper: ServicesProvider,
+      },
+    );
+
+    /* Assertions */
+    await waitFor(() => {
+      expect(result.current.data).toEqual({ data: 'mock option' });
+    });
   });
 });
