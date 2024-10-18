@@ -137,7 +137,7 @@ const Select = <Option extends Record<string, unknown>>(
             filteredOptions.length === 1 && 'bg-slate-200',
             index === 0 && !isSearchable && 'rounded-t-lg',
             option === selectedOption
-              ? 'bg-primary-500 text-slate-50 hover:bg-primary-600 focus:bg-primary-600'
+              ? 'bg-primary-500 hover:bg-primary-600 focus:bg-primary-600 text-slate-50'
               : 'hover:bg-slate-200 focus:bg-slate-200',
           ]
             .filter(Boolean)

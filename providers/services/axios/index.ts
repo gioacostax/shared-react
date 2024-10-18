@@ -32,5 +32,3 @@ export class AxiosService<
     });
   }
 }
-
-export default AxiosService;

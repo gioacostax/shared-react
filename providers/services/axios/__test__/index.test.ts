@@ -1,4 +1,4 @@
-import AxiosService from '../index';
+import { AxiosService } from '../index';
 
 ///////////////////// MOCKING /////////////////////
 vi.mock('axios', () => ({
