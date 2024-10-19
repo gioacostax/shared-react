@@ -23,13 +23,6 @@ describe('<TextField />', () => {
     screen.getByText('Label');
   });
 
-  test('renders with property: "helper"', () => {
-    render(<TextField helper="Helper" />);
-
-    /* Assertions */
-    screen.getByText('Helper');
-  });
-
   test('renders with property: "leading"', () => {
     render(<TextField leading="Leading" />);
 

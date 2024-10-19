@@ -16,10 +16,10 @@ interface Props {
 /**
  * Renders a customizable shimmer component.
  */
-const Shimmer: FC<Props> = ({ height = '1.5rem', style, width = '100%', ...rest }) => (
+const Shimmer: FC<Props> = ({ height = '1.8rem', style, width = '100%', ...rest }) => (
   <div
     className={[
-      'animate-pulse rounded-md bg-gradient-to-r from-slate-200 to-slate-300 opacity-20',
+      'animate-pulse rounded-md bg-gradient-to-r from-slate-300 to-slate-400 opacity-20 dark:from-slate-600 dark:to-slate-700',
       rest.className,
     ]
       .filter(Boolean)

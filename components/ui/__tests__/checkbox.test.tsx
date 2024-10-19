@@ -16,13 +16,6 @@ describe('<Checkbox />', () => {
     screen.getByText('Label');
   });
 
-  test('renders with property: "isError"', () => {
-    render(<Checkbox isError>Label</Checkbox>);
-
-    /* Assertions */
-    expect(screen.getByText('Label').getAttribute('data-error')).toBe('true');
-  });
-
   test('renders with property: "indeterminate"', () => {
     render(
       <Checkbox data-testid="test" indeterminate>

@@ -6,6 +6,7 @@ import React, { type FC, type PropsWithChildren, useEffect, useRef } from 'react
 import { createPortal } from 'react-dom';
 
 interface Props {
+  bgClassName?: string;
   childrenClassName?: string;
   className?: string;
   closeOnClickOutside?: boolean;
@@ -18,6 +19,7 @@ interface Props {
  * Renders a customizable screen component.
  */
 const Screen: FC<PropsWithChildren<Props>> = ({
+  bgClassName,
   children,
   childrenClassName,
   className,
@@ -50,10 +52,18 @@ const Screen: FC<PropsWithChildren<Props>> = ({
   return isVisible
     ? createPortal(
         <>
-          <span className="absolute left-0 top-0 z-30 h-full w-full bg-black/5 backdrop-blur-sm" />
+          <span
+            className={[
+              'fixed left-0 top-0 z-30 h-full w-full bg-black/5 backdrop-blur-sm',
+              bgClassName,
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            data-testid="bg-screen"
+          />
           <dialog
             className={[
-              'absolute left-0 top-0 z-50 flex h-full w-full animate-fadeIn items-center justify-center bg-transparent p-6',
+              'fixed left-0 top-0 z-30 flex h-full w-full animate-fadeIn items-center justify-center bg-transparent p-6',
               className,
             ]
               .filter(Boolean)

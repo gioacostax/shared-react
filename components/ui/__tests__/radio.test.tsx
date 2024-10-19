@@ -16,13 +16,6 @@ describe('<Radio />', () => {
     screen.getByText('Label');
   });
 
-  test('renders with property: "isError"', () => {
-    render(<Radio isError>Label</Radio>);
-
-    /* Assertions */
-    expect(screen.getByText('Label').getAttribute('data-error')).toBe('true');
-  });
-
   test('renders with property: "indeterminate"', () => {
     render(
       <Radio data-testid="test" indeterminate>

@@ -86,32 +86,6 @@ describe('<Select />', () => {
     screen.getByText('Option B');
   });
 
-  test('renders and keyDown on container', () => {
-    render(
-      <Select
-        isSearchable
-        options={[
-          { id: '1', value: 'Option A' },
-          { id: '2', value: 'Option B' },
-        ]}
-        renderKey="value"
-        valueKey="id"
-      />,
-    );
-
-    /* Actions */
-    fireEvent.keyDown(screen.getByText('seleccionar...'), { code: 'Enter' });
-
-    /* Assertions */
-    expect(screen.queryByText('Option B')).toBeNull();
-
-    /* Actions */
-    fireEvent.keyDown(screen.getByText('seleccionar...'), { code: 'A' });
-
-    /* Assertions */
-    screen.getByText('Option B');
-  });
-
   test('renders and select option with property "renderKey"', () => {
     const onChange = vi.fn();
     render(
@@ -209,23 +183,6 @@ describe('<Select />', () => {
     screen.getByText('leading');
   });
 
-  test('renders with property: "helper"', () => {
-    render(
-      <Select
-        helper="helper"
-        options={[
-          { id: '1', value: 'Option A' },
-          { id: '2', value: 'Option B' },
-        ]}
-        renderKey="value"
-        valueKey="id"
-      />,
-    );
-
-    /* Assertions */
-    screen.getByText('helper');
-  });
-
   test('renders with property: "emptyLabel"', () => {
     render(<Select emptyLabel="Empty" options={[]} renderKey="value" valueKey="id" />);
     fireEvent.click(screen.getByText('seleccionar...'));
@@ -276,33 +233,5 @@ describe('<Select />', () => {
 
     /* Assertions */
     expect(screen.queryByText('Option B')).toBeNull();
-  });
-
-  test('renders with property: "isClearable"', () => {
-    render(
-      <Select
-        data-testid="select"
-        isClearable
-        options={[
-          { id: '1', value: 'Option A' },
-          { id: '2', value: 'Option B' },
-        ]}
-        renderKey="value"
-        valueKey="id"
-      />,
-    );
-
-    /* Actions */
-    fireEvent.click(screen.getByText('seleccionar...'));
-    fireEvent.click(screen.getByText('Option A'));
-
-    /* Assertions */
-    screen.getByText('Option A');
-
-    /* Actions */
-    fireEvent.click(screen.getByTestId('select-clear'));
-
-    /* Assertions */
-    expect(screen.queryByText('Option A')).toBeNull();
   });
 });

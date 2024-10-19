@@ -5,7 +5,6 @@
 import React, {
   type ChangeEvent,
   type ComponentPropsWithoutRef,
-  type CSSProperties,
   type ForwardRefRenderFunction,
   type KeyboardEvent,
   type ReactNode,
@@ -16,9 +15,7 @@ import React, {
 
 interface Props {
   'data-testid'?: string;
-  helper?: ReactNode;
   inputClassName?: string;
-  inputStyle?: CSSProperties;
   keyPattern?: RegExp;
   leading?: ReactNode;
   preventDefault?: boolean;
@@ -36,9 +33,7 @@ const TextField: ForwardRefRenderFunction<
   {
     children,
     className,
-    helper,
     inputClassName,
-    inputStyle,
     keyPattern,
     leading,
     onInput,
@@ -51,7 +46,7 @@ const TextField: ForwardRefRenderFunction<
   },
   ref,
 ) => {
-  const prevValue = useRef(rest.value);
+  const prevValue = useRef(rest.value ?? '');
 
   // Prevent default event when user presses enter
   const handleOnKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -76,7 +71,7 @@ const TextField: ForwardRefRenderFunction<
   return (
     <label
       className={[
-        'flex h-fit flex-col gap-1 font-bold text-slate-800 transition-all has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 dark:text-slate-300',
+        'flex h-fit flex-col gap-2 text-slate-800 transition-all dark:text-slate-300',
         className,
       ]
         .filter(Boolean)
@@ -84,11 +79,11 @@ const TextField: ForwardRefRenderFunction<
       style={style}
     >
       {children}
-      <div className="flex min-h-10 items-center gap-2 rounded-md border-slate-200 bg-slate-200 px-3 py-2 transition-all has-[:focus]:outline has-[:focus]:outline-2 has-[:focus]:outline-offset-2 has-[:focus]:outline-blue-500 dark:bg-slate-600">
+      <div className="flex min-h-10 items-center gap-2 rounded-md bg-slate-200 px-3 py-2 outline-none transition-all has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:focus]:outline has-[:focus]:outline-2 has-[:focus]:outline-offset-2 has-[:focus]:outline-blue-500 dark:bg-slate-600">
         {leading}
         <input
           className={[
-            'm-0 w-full bg-transparent p-0 font-normal text-slate-950 outline-none placeholder:opacity-70 disabled:cursor-not-allowed disabled:opacity-50 dark:text-slate-50',
+            'm-0 w-full bg-transparent p-0 text-slate-900 outline-none disabled:cursor-not-allowed dark:text-slate-50',
             inputClassName,
           ]
             .filter(Boolean)
@@ -96,12 +91,10 @@ const TextField: ForwardRefRenderFunction<
           onInput={handleOnInput}
           onKeyDown={handleOnKeyDown}
           ref={ref}
-          style={inputStyle}
           {...rest}
         />
         {trailing}
       </div>
-      {helper}
     </label>
   );
 };

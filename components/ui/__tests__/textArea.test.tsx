@@ -23,13 +23,6 @@ describe('<TextArea />', () => {
     screen.getByText('Label');
   });
 
-  test('renders with property: "helper"', () => {
-    render(<TextArea helper="Helper" />);
-
-    /* Assertions */
-    screen.getByText('Helper');
-  });
-
   test('renders with property: "keyPattern"', () => {
     render(<TextArea data-testid="input" keyPattern={/^\d*$/} />);
 
