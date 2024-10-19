@@ -12,6 +12,7 @@ export const testSelect = (
   option: string,
   click?: boolean,
   search?: string,
+  searchPlaceholder?: string,
 ) => {
   act(() => {
     fireEvent.click(element);
@@ -22,7 +23,9 @@ export const testSelect = (
   if (!search) optionElement = screen.getByText(option);
   else {
     act(() => {
-      fireEvent.input(screen.getByPlaceholderText('buscar...'), { target: { value: search } });
+      fireEvent.input(screen.getByPlaceholderText(searchPlaceholder ?? 'buscar...'), {
+        target: { value: search },
+      });
     });
     optionElement = screen.getByText(option);
   }
