@@ -54,7 +54,7 @@ const Screen: FC<PropsWithChildren<Props>> = ({
         <>
           <span
             className={[
-              'fixed left-0 top-0 z-30 h-full w-full bg-black/5 backdrop-blur-sm',
+              'fixed left-0 top-0 z-30 h-full w-full animate-fadeIn bg-black/5 backdrop-blur-sm',
               bgClassName,
             ]
               .filter(Boolean)
