@@ -1,4 +1,4 @@
-import { AxiosService } from '../index';
+import { AxiosConfig } from '../index';
 
 ///////////////////// MOCKING /////////////////////
 vi.mock('axios', () => ({
@@ -10,8 +10,8 @@ vi.mock('axios', () => ({
 }));
 ///////////////////////////////////////////////////
 
-test('AxiosService and execute fetch', async () => {
-  const PRESET = new AxiosService({ key: 'key' });
+test('AxiosConfig and execute fetch', async () => {
+  const PRESET = new AxiosConfig({ key: 'key' });
 
   /* Assertions */
   await expect(PRESET.fetch()).resolves.toBe('mock');

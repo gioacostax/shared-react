@@ -8,15 +8,15 @@ import type { AxiosError, AxiosResponse } from 'axios';
 import { type UseQueryOptions, useQuery } from '@tanstack/react-query';
 
 import type {
+  AxiosConfig,
   AxiosCustomConfig,
-  AxiosService,
   ServiceData,
   ServiceParams,
   ServiceResponse,
-} from './axios';
+} from './lib';
 
-const useServiceQuery = <P extends ServiceParams, D extends ServiceData, R extends ServiceResponse>(
-  config: AxiosService<P, D, R>,
+const useAxiosQuery = <P extends ServiceParams, D extends ServiceData, R extends ServiceResponse>(
+  config: AxiosConfig<P, D, R>,
   options?: {
     axios?: Partial<AxiosCustomConfig<P, D>>;
     mock?: Partial<AxiosResponse<R, D>>;
@@ -36,4 +36,4 @@ const useServiceQuery = <P extends ServiceParams, D extends ServiceData, R exten
   });
 };
 
-export default useServiceQuery;
+export default useAxiosQuery;

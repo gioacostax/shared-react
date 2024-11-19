@@ -2,10 +2,10 @@ import React from 'react';
 
 import { render, screen } from '@testing-library/react';
 
-import ServicesProvider from '../index';
+import AxiosProvider from '../index';
 
-test('QueryProvider', () => {
-  render(<ServicesProvider>Children</ServicesProvider>);
+test('AxiosProvider', () => {
+  render(<AxiosProvider>Children</AxiosProvider>);
 
   /* Assertions */
   screen.getByText('Children');

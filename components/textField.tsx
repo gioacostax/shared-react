@@ -71,7 +71,7 @@ const TextField: ForwardRefRenderFunction<
   return (
     <label
       className={[
-        'flex h-fit flex-col gap-2 text-slate-800 transition-all dark:text-slate-300',
+        'flex h-fit flex-col gap-2 leading-none text-slate-800 transition-all dark:text-slate-300',
         className,
       ]
         .filter(Boolean)
@@ -79,7 +79,7 @@ const TextField: ForwardRefRenderFunction<
       style={style}
     >
       {children}
-      <div className="flex min-h-10 items-center gap-2 rounded-md bg-slate-200 px-3 py-2 outline-none transition-all has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:focus]:outline has-[:focus]:outline-2 has-[:focus]:outline-offset-2 has-[:focus]:outline-blue-500 dark:bg-slate-600">
+      <div className="flex min-h-10 items-center gap-2 rounded-md bg-slate-200 px-3 py-2 outline-none transition-all has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:focus]:outline has-[:focus]:outline-2 has-[:focus]:outline-offset-2 has-[:focus]:outline-blue-500 dark:bg-slate-700">
         {leading}
         <input
           className={[

@@ -8,19 +8,19 @@ import type { AxiosError, AxiosResponse } from 'axios';
 import { type UseMutationOptions, useMutation } from '@tanstack/react-query';
 
 import type {
+  AxiosConfig,
   AxiosCustomConfig,
-  AxiosService,
   ServiceData,
   ServiceParams,
   ServiceResponse,
-} from './axios';
+} from './lib';
 
-const useServiceMutation = <
+const useAxiosMutation = <
   P extends ServiceParams,
   D extends ServiceData,
   R extends ServiceResponse,
 >(
-  config: AxiosService<P, D, R>,
+  config: AxiosConfig<P, D, R>,
   options?: {
     axios?: Partial<AxiosCustomConfig<P, D>>;
     mock?: Partial<AxiosResponse<R, D>>;
@@ -40,4 +40,4 @@ const useServiceMutation = <
   });
 };
 
-export default useServiceMutation;
+export default useAxiosMutation;

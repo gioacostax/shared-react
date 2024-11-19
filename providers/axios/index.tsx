@@ -2,9 +2,9 @@ import React, { type FC, type PropsWithChildren } from 'react';
 
 import { type QueryClientConfig, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-export { AxiosService } from './axios';
-export { default as useServiceMutation } from './useServiceMutation';
-export { default as useServiceQuery } from './useServiceQuery';
+export { AxiosConfig } from './lib';
+export { default as useAxiosMutation } from './useAxiosMutation';
+export { default as useAxiosQuery } from './useAxiosQuery';
 
 const QUERY_CONFIG: QueryClientConfig = {
   defaultOptions: {
@@ -20,8 +20,8 @@ const QUERY_CONFIG: QueryClientConfig = {
   },
 };
 
-const ServicesProvider: FC<PropsWithChildren> = ({ children }) => (
+const AxiosProvider: FC<PropsWithChildren> = ({ children }) => (
   <QueryClientProvider client={new QueryClient(QUERY_CONFIG)}>{children}</QueryClientProvider>
 );
 
-export default ServicesProvider;
+export default AxiosProvider;

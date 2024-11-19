@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from '@testing-library/react';
 
-import ServicesProvider, { AxiosService, useServiceQuery } from '../index';
+import ServicesProvider, { AxiosConfig, useAxiosQuery } from '../index';
 
 ///////////////////// MOCKING /////////////////////
 vi.mock('axios', () => ({
@@ -13,9 +13,9 @@ vi.mock('axios', () => ({
 }));
 ///////////////////////////////////////////////////
 
-describe('useServiceQuery hook', () => {
+describe('useAxiosQuery hook', () => {
   test('renders hook', async () => {
-    const { result } = renderHook(() => useServiceQuery(new AxiosService({ key: 'key' })), {
+    const { result } = renderHook(() => useAxiosQuery(new AxiosConfig({ key: 'key' })), {
       wrapper: ServicesProvider,
     });
 
@@ -27,7 +27,7 @@ describe('useServiceQuery hook', () => {
 
   test('renders hook with mock', async () => {
     const { result } = renderHook(
-      () => useServiceQuery(new AxiosService({ key: 'key' }), { mock: { data: 'mock option' } }),
+      () => useAxiosQuery(new AxiosConfig({ key: 'key' }), { mock: { data: 'mock option' } }),
       {
         wrapper: ServicesProvider,
       },

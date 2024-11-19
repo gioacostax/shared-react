@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react';
 
-import ServicesProvider, { AxiosService, useServiceMutation } from '../index';
+import ServicesProvider, { AxiosConfig, useAxiosMutation } from '../index';
 
 ///////////////////// MOCKING /////////////////////
 vi.mock('axios', () => ({
@@ -13,9 +13,9 @@ vi.mock('axios', () => ({
 }));
 ///////////////////////////////////////////////////
 
-describe('useServiceMutation hook', () => {
+describe('useAxiosMutation hook', () => {
   test('renders hook', async () => {
-    const { result } = renderHook(() => useServiceMutation(new AxiosService({ key: 'key' })), {
+    const { result } = renderHook(() => useAxiosMutation(new AxiosConfig({ key: 'key' })), {
       wrapper: ServicesProvider,
     });
 
@@ -25,7 +25,7 @@ describe('useServiceMutation hook', () => {
 
   test('renders hook with mock', async () => {
     const { result } = renderHook(
-      () => useServiceMutation(new AxiosService({ key: 'key' }), { mock: { data: 'mock option' } }),
+      () => useAxiosMutation(new AxiosConfig({ key: 'key' }), { mock: { data: 'mock option' } }),
       {
         wrapper: ServicesProvider,
       },

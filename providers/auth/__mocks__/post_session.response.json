@@ -1,0 +1,9 @@
+{
+  "code": 0,
+  "data": {
+      "exp": 1727712927,
+      "jti": "14cbec9b-1990-47d8-9e20-0f2bca4243d0",
+      "sub": "gioacostax"
+  },
+  "msg": "SUCCESS"
+}

@@ -53,7 +53,7 @@ const TextArea: ForwardRefRenderFunction<
   return (
     <label
       className={[
-        'flex h-fit flex-col gap-2 text-slate-800 transition-all dark:text-slate-300',
+        'flex h-fit flex-col gap-2 leading-5 text-slate-800 transition-all dark:text-slate-300',
         className,
       ]
         .filter(Boolean)
@@ -63,7 +63,7 @@ const TextArea: ForwardRefRenderFunction<
       {children}
       <textarea
         className={[
-          'm-0 min-h-20 w-full rounded-md bg-slate-200 px-3 py-3 text-slate-900 outline-none transition-all focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-600 dark:text-slate-50',
+          'm-0 min-h-20 w-full rounded-md bg-slate-200 px-3 py-3 text-slate-900 outline-none transition-all focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-700 dark:text-slate-50',
           inputClassName,
         ]
           .filter(Boolean)

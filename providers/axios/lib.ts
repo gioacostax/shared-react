@@ -10,7 +10,7 @@ export interface AxiosCustomConfig<P, D> extends AxiosRequestConfig<D> {
   readonly useConfigHook?: () => () => Promise<Omit<AxiosCustomConfig<P, D>, 'useConfigHook'>>;
 }
 
-export class AxiosService<
+export class AxiosConfig<
   P extends ServiceParams,
   D extends ServiceData,
   R extends ServiceResponse,
