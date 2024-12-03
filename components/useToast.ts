@@ -3,7 +3,6 @@
  */
 
 import { type ReactNode, useCallback } from 'react';
-
 import { createRoot } from 'react-dom/client';
 
 /**
