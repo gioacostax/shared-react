@@ -79,7 +79,7 @@ const TextField: ForwardRefRenderFunction<
       style={style}
     >
       {children}
-      <div className="flex min-h-10 items-center gap-2 rounded-md bg-slate-200 px-3 py-2 outline-none transition-all has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:focus]:outline has-[:focus]:outline-2 has-[:focus]:outline-offset-2 has-[:focus]:outline-blue-500 dark:bg-slate-700">
+      <div className="flex min-h-10 items-center gap-2 rounded-md border border-slate-300 bg-slate-50 px-3 py-2 outline-none transition-all has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:focus]:outline has-[:focus]:outline-2 has-[:focus]:outline-offset-2 has-[:focus]:outline-blue-500 dark:bg-slate-700">
         {leading}
         <input
           className={[

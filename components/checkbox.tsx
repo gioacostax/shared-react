@@ -24,7 +24,7 @@ const Checkbox: ForwardRefRenderFunction<
 > = ({ children, className, indeterminate, inputClassName, style, ...rest }, ref) => (
   <label
     className={[
-      'flex w-fit cursor-pointer items-center gap-3 text-slate-800 transition-all has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 dark:text-slate-300',
+      'flex w-fit cursor-pointer items-start gap-3 text-slate-800 transition-all has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 dark:text-slate-300',
       className,
     ]
       .filter(Boolean)

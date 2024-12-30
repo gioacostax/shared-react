@@ -63,7 +63,7 @@ const TextArea: ForwardRefRenderFunction<
       {children}
       <textarea
         className={[
-          'm-0 min-h-20 w-full rounded-md bg-slate-200 px-3 py-3 text-slate-900 outline-none transition-all focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-700 dark:text-slate-50',
+          'm-0 min-h-20 w-full rounded-md border border-slate-300 bg-slate-50 px-3 py-3 text-slate-900 outline-none transition-all focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-700 dark:text-slate-50',
           inputClassName,
         ]
           .filter(Boolean)

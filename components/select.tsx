@@ -167,7 +167,7 @@ const Select = <Option extends Record<string, unknown>>(
   return (
     <label
       className={[
-        'flex h-fit min-w-48 flex-col gap-2 leading-5 text-slate-800 transition-all dark:text-slate-300',
+        'flex h-fit min-w-48 flex-col gap-2 leading-none text-slate-800 transition-all dark:text-slate-300',
         className,
       ]
         .filter(Boolean)
@@ -197,7 +197,7 @@ const Select = <Option extends Record<string, unknown>>(
 
       <button
         className={[
-          'flex min-h-10 items-center gap-2 rounded-md bg-slate-200 px-3 py-2 leading-4 outline-none transition-all focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-700',
+          'flex min-h-10 items-center gap-2 rounded-md border border-slate-300 bg-slate-50 px-3 py-2 leading-4 outline-none transition-all focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-700',
         ]
           .filter(Boolean)
           .join(' ')}
@@ -212,7 +212,7 @@ const Select = <Option extends Record<string, unknown>>(
 
         <span
           className={[
-            'm-0 w-full p-0 text-left',
+            'm-0 w-full p-0 text-left leading-5',
             !selectedOption && !getInputNode()?.value
               ? 'text-gray-400 dark:text-gray-400'
               : 'text-slate-900 dark:text-slate-50',
