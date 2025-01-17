@@ -1,4 +1,4 @@
-import { act, renderHook, waitFor } from '@testing-library/react';
+import { renderHook, waitFor } from '@testing-library/react';
 
 import ServicesProvider, { AxiosConfig, useAxiosMutation } from '../index';
 
