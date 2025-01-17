@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react';
+import { act, renderHook, waitFor } from '@testing-library/react';
 
 import ServicesProvider, { AxiosConfig, useAxiosMutation } from '../index';
 
@@ -19,8 +19,13 @@ describe('useAxiosMutation hook', () => {
       wrapper: ServicesProvider,
     });
 
+    /* Actions */
+    await result.current.mutateAsync({});
+
     /* Assertions */
-    await expect(result.current.mutateAsync({})).resolves.toBe('mock');
+    await waitFor(() => {
+      expect(result.current.data).toBe('mock');
+    });
   });
 
   test('renders hook with mock', async () => {
@@ -31,7 +36,12 @@ describe('useAxiosMutation hook', () => {
       },
     );
 
+    /* Actions */
+    await result.current.mutateAsync({});
+
     /* Assertions */
-    await expect(result.current.mutateAsync({})).resolves.toEqual({ data: 'mock option' });
+    await waitFor(() => {
+      expect(result.current.data).toEqual({ data: 'mock option' });
+    });
   });
 });
