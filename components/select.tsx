@@ -5,6 +5,7 @@
 import React, {
   type ChangeEvent,
   type ComponentPropsWithRef,
+  type ForwardedRef,
   type PropsWithChildren,
   type ReactNode,
   type Ref,
@@ -280,4 +281,8 @@ const Select = <Option extends Record<string, unknown>>(
   );
 };
 
-export default memo(forwardRef(Select)) as typeof Select;
+const SelectRef = forwardRef(Select) as <Option extends Record<string, unknown>>(
+  props: { ref?: ForwardedRef<HTMLInputElement> } & Props<Option>,
+) => ReturnType<typeof Select>;
+
+export default memo(SelectRef) as typeof SelectRef;
