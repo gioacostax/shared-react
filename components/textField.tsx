@@ -79,11 +79,11 @@ const TextField: ForwardRefRenderFunction<
       style={style}
     >
       {children}
-      <div className="flex min-h-10 items-center gap-2 rounded-md bg-slate-200 px-3 py-2 outline-none transition-all has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 has-[:focus]:outline has-[:focus]:outline-2 has-[:focus]:outline-offset-2 has-[:focus]:outline-blue-500 dark:bg-slate-700">
+      <div className="flex min-h-10 items-center gap-2 rounded-md bg-slate-200 px-3 py-2 outline-hidden transition-all has-focus:outline has-focus:outline-2 has-focus:outline-offset-2 has-focus:outline-blue-500 has-disabled:cursor-not-allowed has-disabled:opacity-50 dark:bg-slate-700">
         {leading}
         <input
           className={[
-            'm-0 w-full bg-transparent p-0 text-slate-900 outline-none disabled:cursor-not-allowed dark:text-slate-50',
+            'm-0 w-full bg-transparent p-0 text-slate-900 outline-hidden disabled:cursor-not-allowed dark:text-slate-50',
             inputClassName,
           ]
             .filter(Boolean)

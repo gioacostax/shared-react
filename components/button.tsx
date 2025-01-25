@@ -23,9 +23,9 @@ const Button: ForwardRefRenderFunction<
 > = ({ children, className, variant = 'primary', ...rest }, ref) => (
   <button
     className={[
-      'z-[1] box-border flex w-fit cursor-pointer items-center justify-center gap-2 whitespace-nowrap text-sm font-bold leading-4 outline-none transition-all focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50',
+      'z-1 box-border flex w-fit cursor-pointer items-center justify-center gap-2 text-sm leading-4 font-bold whitespace-nowrap outline-hidden transition-all focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50',
       variant === 'text' ? 'min-h-fit p-0' : 'min-h-10 rounded-lg px-4 py-2',
-      variant === 'primary' && 'bg-primary-main text-slate-50 hover:bg-primary-dark',
+      variant === 'primary' && 'bg-primary-main hover:bg-primary-dark text-slate-50',
       variant === 'secondary' &&
         'bg-slate-300 text-slate-800 hover:bg-slate-200 dark:bg-slate-300 dark:hover:bg-slate-200',
       variant === 'ghost' &&

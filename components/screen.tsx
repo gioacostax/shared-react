@@ -54,7 +54,7 @@ const Screen: FC<PropsWithChildren<Props>> = ({
         <>
           <span
             className={[
-              'fixed left-0 top-0 z-30 h-full w-full animate-fadeIn bg-black/5 backdrop-blur-sm',
+              'animate-fadeIn fixed top-0 left-0 z-30 h-full w-full bg-black/5 backdrop-blur-xs',
               bgClassName,
             ]
               .filter(Boolean)
@@ -63,7 +63,7 @@ const Screen: FC<PropsWithChildren<Props>> = ({
           />
           <dialog
             className={[
-              'fixed left-0 top-0 z-30 flex h-full w-full animate-fadeIn items-center justify-center bg-transparent p-6',
+              'animate-fadeIn fixed top-0 left-0 z-30 flex h-full w-full items-center justify-center bg-transparent p-6',
               className,
             ]
               .filter(Boolean)

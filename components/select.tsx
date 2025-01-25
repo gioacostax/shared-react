@@ -131,11 +131,11 @@ const Select = <Option extends Record<string, unknown>>(
             (index === 0 || (selectedOption && selectedOption[valueKey] === option[valueKey]))
           }
           className={[
-            'flex w-full cursor-pointer items-center gap-2 p-3 text-left last:rounded-b-md focus:outline-none',
+            'flex w-full cursor-pointer items-center gap-2 p-3 text-left last:rounded-b-md focus:outline-hidden',
             filteredOptions.length === 1 && 'bg-slate-200 dark:bg-slate-600',
             index === 0 && !isSearchable && 'rounded-t-md',
             option === selectedOption
-              ? 'bg-primary-main text-slate-50 hover:bg-primary-dark focus:bg-primary-dark'
+              ? 'bg-primary-main hover:bg-primary-dark focus:bg-primary-dark text-slate-50'
               : 'hover:bg-slate-200 focus:bg-slate-200 dark:hover:bg-slate-600 dark:focus:bg-slate-600',
           ]
             .filter(Boolean)
@@ -198,7 +198,7 @@ const Select = <Option extends Record<string, unknown>>(
 
       <button
         className={[
-          'flex min-h-10 items-center gap-2 rounded-md bg-slate-200 px-3 py-2 leading-4 outline-none transition-all focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-700',
+          'flex min-h-10 items-center gap-2 rounded-md bg-slate-200 px-3 py-2 leading-4 outline-hidden transition-all focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-700',
         ]
           .filter(Boolean)
           .join(' ')}
@@ -248,7 +248,7 @@ const Select = <Option extends Record<string, unknown>>(
               <input
                 // eslint-disable-next-line jsx-a11y/no-autofocus
                 autoFocus
-                className="w-full rounded-t-md border-2 border-transparent bg-transparent p-3 outline-none focus:border-2 focus:border-blue-500 dark:border-slate-700"
+                className="w-full rounded-t-md border-2 border-transparent bg-transparent p-3 outline-hidden focus:border-2 focus:border-blue-500 dark:border-slate-700"
                 onChange={({ currentTarget }) => {
                   setSearch(currentTarget.value);
                 }}

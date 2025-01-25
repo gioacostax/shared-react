@@ -24,7 +24,7 @@ const Checkbox: ForwardRefRenderFunction<
 > = ({ children, className, indeterminate, inputClassName, style, ...rest }, ref) => (
   <label
     className={[
-      'flex w-fit cursor-pointer items-center gap-3 text-slate-800 transition-all has-[:disabled]:cursor-not-allowed has-[:disabled]:opacity-50 dark:text-slate-300',
+      'flex w-fit cursor-pointer items-center gap-3 text-slate-800 transition-all has-disabled:cursor-not-allowed has-disabled:opacity-50 dark:text-slate-300',
       className,
     ]
       .filter(Boolean)
@@ -33,10 +33,10 @@ const Checkbox: ForwardRefRenderFunction<
   >
     <input
       className={[
-        'flex min-h-5 min-w-5 cursor-pointer appearance-none items-center justify-center rounded-md border-2 border-primary-main bg-transparent outline-none focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50',
+        'border-primary-main flex min-h-5 min-w-5 cursor-pointer appearance-none items-center justify-center rounded-md border-2 bg-transparent outline-hidden focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50',
         indeterminate
-          ? 'data-[indeterminate="true"]:border-0 data-[indeterminate="true"]:bg-primary-main after:data-[indeterminate="true"]:min-w-[0.7rem] after:data-[indeterminate="true"]:border-[0.1rem] after:checked:[&:not([data-indeterminate="true"])]:border-slate-50'
-          : 'checked:[&:not([data-indeterminate="true"])]:border-0 checked:[&:not([data-indeterminate="true"])]:bg-primary-main after:checked:[&:not([data-indeterminate="true"])]:mt-[-0.2rem] after:checked:[&:not([data-indeterminate="true"])]:min-h-[0.35rem] after:checked:[&:not([data-indeterminate="true"])]:min-w-[0.75rem] after:checked:[&:not([data-indeterminate="true"])]:rotate-[-45deg] after:checked:[&:not([data-indeterminate="true"])]:border-[0.15rem] after:checked:[&:not([data-indeterminate="true"])]:border-r-0 after:checked:[&:not([data-indeterminate="true"])]:border-t-0 after:checked:[&:not([data-indeterminate="true"])]:border-slate-50 after:checked:[&:not([data-indeterminate="true"])]:content-[""]',
+          ? 'data-[indeterminate="true"]:bg-primary-main data-[indeterminate="true"]:border-0 data-[indeterminate="true"]:after:min-w-[0.7rem] data-[indeterminate="true"]:after:border-[0.1rem] checked:[&:not([data-indeterminate="true"])]:after:border-slate-50'
+          : 'checked:[&:not([data-indeterminate="true"])]:bg-primary-main checked:[&:not([data-indeterminate="true"])]:border-0 checked:[&:not([data-indeterminate="true"])]:after:mt-[-0.2rem] checked:[&:not([data-indeterminate="true"])]:after:min-h-[0.35rem] checked:[&:not([data-indeterminate="true"])]:after:min-w-[0.75rem] checked:[&:not([data-indeterminate="true"])]:after:rotate-[-45deg] checked:[&:not([data-indeterminate="true"])]:after:border-[0.15rem] checked:[&:not([data-indeterminate="true"])]:after:border-t-0 checked:[&:not([data-indeterminate="true"])]:after:border-r-0 checked:[&:not([data-indeterminate="true"])]:after:border-slate-50 checked:[&:not([data-indeterminate="true"])]:after:content-[""]',
         inputClassName,
       ]
         .filter(Boolean)

@@ -130,7 +130,7 @@ describe('<Select />', () => {
     expect(document.activeElement).toEqual(document.querySelector('button'));
   });
 
-  test('renders and blur', () => {
+  test('renders and blur-sm', () => {
     render(
       <Select
         data-testid="select"

@@ -19,7 +19,7 @@ interface Props {
 const Shimmer: FC<Props> = ({ height = '1.8rem', style, width = '100%', ...rest }) => (
   <div
     className={[
-      'animate-pulse rounded-md bg-gradient-to-r from-slate-300 to-slate-400 opacity-20 dark:from-slate-600 dark:to-slate-700',
+      'animate-pulse rounded-md bg-linear-to-r from-slate-300 to-slate-400 opacity-20 dark:from-slate-600 dark:to-slate-700',
       rest.className,
     ]
       .filter(Boolean)
