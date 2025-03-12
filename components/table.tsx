@@ -11,7 +11,7 @@ import Shimmer from '@shared/react/components/shimmer';
 
 export const Th: FC<ComponentPropsWithoutRef<'th'>> = ({ children, className, ...rest }) => (
   <th
-    className={`sticky -top-[1px] w-0 bg-slate-700/50 px-6 py-2 text-left backdrop-blur ${className}`}
+    className={`sticky -top-[1px] w-0 bg-slate-700/50 px-6 py-2 text-left backdrop-blur-sm ${className}`}
     scope="col"
     {...rest}
   >

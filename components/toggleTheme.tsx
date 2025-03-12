@@ -40,7 +40,7 @@ const ToggleTheme: FC<Props> = ({
   return (
     <button
       aria-label={title}
-      className="hover:text-primary-main"
+      className="hover:text-primary-main cursor-pointer"
       onClick={() => {
         if (
           localStorage.getItem(storageKey)
