@@ -198,7 +198,7 @@ const Select = <Option extends Record<string, unknown>>(
 
       <button
         className={[
-          'flex min-h-10 items-center gap-2 rounded-md bg-slate-200 px-3 py-2 leading-4 outline-hidden transition-all focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-700',
+          'flex min-h-10 items-center gap-2 rounded-md bg-slate-200 px-3 py-2 leading-4 outline-hidden transition-all focus:outline-2 focus:outline-offset-2 focus:outline-blue-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-700',
         ]
           .filter(Boolean)
           .join(' ')}

@@ -49,7 +49,7 @@ const Table = <Row extends object>({
 }: PropsWithChildren<Props<Row>>) => (
   <div className={`relative w-full overflow-auto bg-slate-800 ${className}`}>
     <table className="w-full">
-      <caption className="p-4">{children}</caption>
+      {children && <caption className="p-4">{children}</caption>}
       <thead className="text-slate-50">
         <tr>{columns?.map(({ key, th }) => <Fragment key={String(key)}>{th}</Fragment>)}</tr>
       </thead>
@@ -57,17 +57,17 @@ const Table = <Row extends object>({
         {isLoading && (
           <>
             <tr>
-              <td className="px-6 py-4 text-center" colSpan={11}>
+              <td className="px-6 py-4 text-center" colSpan={columns?.length}>
                 <Shimmer height={14} />
               </td>
             </tr>
             <tr>
-              <td className="px-6 py-4 text-center" colSpan={11}>
+              <td className="px-6 py-4 text-center" colSpan={columns?.length}>
                 <Shimmer height={14} />
               </td>
             </tr>
             <tr>
-              <td className="px-6 py-4 text-center" colSpan={11}>
+              <td className="px-6 py-4 text-center" colSpan={columns?.length}>
                 <Shimmer height={14} />
               </td>
             </tr>
@@ -75,7 +75,7 @@ const Table = <Row extends object>({
         )}
         {!isLoading && !data?.length && (
           <tr>
-            <td className="h-44 px-6 text-center" colSpan={11}>
+            <td className="h-44 px-6 text-center" colSpan={columns?.length}>
               {emptyLabel}
             </td>
           </tr>
