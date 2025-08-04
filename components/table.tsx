@@ -51,7 +51,11 @@ const Table = <Row extends object>({
     <table className="w-full">
       {children && <caption className="p-4">{children}</caption>}
       <thead className="text-slate-50">
-        <tr>{columns?.map(({ key, th }) => <Fragment key={String(key)}>{th}</Fragment>)}</tr>
+        <tr>
+          {columns?.map(({ key, th }) => (
+            <Fragment key={String(key)}>{th}</Fragment>
+          ))}
+        </tr>
       </thead>
       <tbody className="divide-y divide-slate-700/50 bg-slate-800">
         {isLoading && (
