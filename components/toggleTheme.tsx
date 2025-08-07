@@ -44,7 +44,7 @@ const ToggleTheme: FC<Props> = ({
       onClick={() => {
         if (
           localStorage.getItem(storageKey)
-            ? localStorage.theme === 'dark'
+            ? localStorage[storageKey] === 'dark'
             : window.matchMedia('(prefers-color-scheme: dark)').matches
         ) {
           element.classList.remove('dark');
