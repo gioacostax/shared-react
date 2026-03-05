@@ -2,6 +2,7 @@
  * Shared UI Components
  */
 
+// biome-ignore lint/correctness/noUnusedImports: <react>
 import React, {
   type ComponentPropsWithoutRef,
   type ForwardRefRenderFunction,

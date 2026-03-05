@@ -2,11 +2,12 @@
  * Shared UI Components
  */
 
+// biome-ignore lint/correctness/noUnusedImports: <react>
 import React, {
-  type ChangeEvent,
   type ComponentPropsWithoutRef,
   type ForwardRefRenderFunction,
   forwardRef,
+  type InputEvent,
   memo,
   useRef,
 } from 'react';
@@ -31,7 +32,7 @@ const TextArea: ForwardRefRenderFunction<
   const prevValue = useRef(rest.value ?? '');
 
   // Validate keyPattern/resolver when input changes
-  const handleOnInput = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  const handleOnInput = (event: InputEvent<HTMLTextAreaElement>) => {
     if (keyPattern && event.currentTarget.value) {
       if (keyPattern.test(event.currentTarget.value)) {
         if (resolver) {

@@ -2,8 +2,8 @@
  * Shared UI Components
  */
 
-import React from 'react';
-import { type CSSProperties, type FC, memo } from 'react';
+// biome-ignore lint/correctness/noUnusedImports: <react>
+import React, { type CSSProperties, type FC, memo } from 'react';
 
 interface Props {
   className?: string;

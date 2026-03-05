@@ -1,17 +1,17 @@
+import Shimmer from '@shared/react/components/shimmer';
+// biome-ignore lint/correctness/noUnusedImports: <react>
 import React, {
   type ComponentPropsWithoutRef,
   type FC,
+  Fragment,
   type MouseEvent,
   type PropsWithChildren,
   type ReactNode,
-  Fragment,
 } from 'react';
-
-import Shimmer from '@shared/react/components/shimmer';
 
 export const Th: FC<ComponentPropsWithoutRef<'th'>> = ({ children, className, ...rest }) => (
   <th
-    className={`sticky -top-[1px] w-0 bg-slate-700/50 px-6 py-2 text-left backdrop-blur-sm ${className}`}
+    className={`sticky -top-px w-0 bg-slate-700/50 px-6 py-2 text-left backdrop-blur-sm ${className}`}
     scope="col"
     {...rest}
   >

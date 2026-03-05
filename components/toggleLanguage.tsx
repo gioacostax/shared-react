@@ -2,6 +2,7 @@
  * Shared UI Components
  */
 
+// biome-ignore lint/correctness/noUnusedImports: <react>
 import React, { type FC, type HTMLAttributes, useEffect, useState } from 'react';
 
 interface Props extends HTMLAttributes<HTMLButtonElement> {

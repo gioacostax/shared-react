@@ -2,15 +2,16 @@
  * Shared UI Components
  */
 
+// biome-ignore lint/correctness/noUnusedImports: <react>
 import React, {
   type ChangeEvent,
   type ComponentPropsWithRef,
   type ForwardedRef,
+  forwardRef,
+  memo,
   type PropsWithChildren,
   type ReactNode,
   type Ref,
-  forwardRef,
-  memo,
   useCallback,
   useEffect,
   useId,
@@ -78,7 +79,7 @@ const Select = <Option extends Record<string, unknown>>(
   // Get input node because we can't manipulate fowarded ref
   const getInputNode = useCallback(
     () => (isClient ? (document.getElementById(input.id ?? id) as HTMLInputElement) : null),
-    [id, input, isClient],
+    [id, input.id, isClient],
   );
 
   const handleOptionClick = useCallback(
@@ -125,7 +126,7 @@ const Select = <Option extends Record<string, unknown>>(
     () => [
       ...filteredOptions.map((option, index) => (
         <button
-          // eslint-disable-next-line jsx-a11y/no-autofocus
+          // biome-ignore lint/a11y/noAutofocus: <ux>
           autoFocus={
             !isSearchable &&
             (index === 0 || (selectedOption && selectedOption[valueKey] === option[valueKey]))
@@ -225,6 +226,7 @@ const Select = <Option extends Record<string, unknown>>(
         </span>
 
         <svg height="1.3em" viewBox="0 0 24 24" width="1.3em" xmlns="http://www.w3.org/2000/svg">
+          <title>Flecha hacia abajo</title>
           <path
             d="M5.30816 8.30816C5.50554 8.11085 5.7732 8 6.05229 8C6.33138 8 6.59904 8.11085 6.79641 8.30816L12.0064 13.5181L17.2163 8.30816C17.4148 8.11644 17.6807 8.01035 17.9566 8.01275C18.2326 8.01515 18.4966 8.12584 18.6917 8.32098C18.8869 8.51613 18.9976 8.78011 19 9.05608C19.0024 9.33204 18.8963 9.59791 18.7045 9.79641L12.7505 15.7505C12.5531 15.9478 12.2854 16.0586 12.0064 16.0586C11.7273 16.0586 11.4596 15.9478 11.2622 15.7505L5.30816 9.79641C5.11085 9.59904 5 9.33138 5 9.05229C5 8.7732 5.11085 8.50554 5.30816 8.30816Z"
             fill="currentColor"
@@ -246,7 +248,7 @@ const Select = <Option extends Record<string, unknown>>(
           {isSearchable && (
             <>
               <input
-                // eslint-disable-next-line jsx-a11y/no-autofocus
+                // biome-ignore lint/a11y/noAutofocus: <ux>
                 autoFocus
                 className="w-full rounded-t-md border-2 border-transparent bg-transparent p-3 outline-hidden focus:border-2 focus:border-blue-500 dark:border-slate-700"
                 onChange={({ currentTarget }) => {

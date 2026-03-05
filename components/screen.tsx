@@ -2,6 +2,7 @@
  * Shared UI Components
  */
 
+// biome-ignore lint/correctness/noUnusedImports: <react>
 import React, { type FC, type PropsWithChildren, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 
@@ -47,7 +48,7 @@ const Screen: FC<PropsWithChildren<Props>> = ({
       _screenRef.current?.removeEventListener('click', listener);
       _screenRef.current?.removeEventListener('touchstart', listener);
     };
-  }, [childRef, onClose, closeOnClickOutside]);
+  }, [onClose, closeOnClickOutside]);
 
   return isVisible
     ? createPortal(
