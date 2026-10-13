@@ -3,6 +3,7 @@ import { AxiosConfig } from '@shared/react/providers/axios';
 import env from '@/env';
 
 import type { APIResponse } from './types';
+
 export { default as POST_SESSION_MOCK } from './__mocks__/post_session.response.json';
 
 export interface SessionResponse {

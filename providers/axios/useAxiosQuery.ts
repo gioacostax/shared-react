@@ -4,7 +4,6 @@
  */
 
 import type { AxiosError, AxiosResponse } from 'axios';
-
 import { type UseQueryOptions, useQuery } from '@tanstack/react-query';
 
 import type {

@@ -2,9 +2,8 @@
  * Shared UI Components
  */
 
-import React from 'react';
-
 import { render, screen } from '@testing-library/react';
+import React from 'react';
 
 import Shimmer from '../shimmer';
 

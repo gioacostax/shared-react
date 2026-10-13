@@ -1,6 +1,5 @@
+import { QueryClient, type QueryClientConfig, QueryClientProvider } from '@tanstack/react-query';
 import React, { type FC, type PropsWithChildren } from 'react';
-
-import { type QueryClientConfig, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 export { AxiosConfig } from './lib';
 export { default as useAxiosMutation } from './useAxiosMutation';

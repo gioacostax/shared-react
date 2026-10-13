@@ -2,9 +2,8 @@
  * Shared UI Components
  */
 
-import React from 'react';
-
 import { createEvent, fireEvent, render, screen } from '@testing-library/react';
+import React from 'react';
 
 import TextField from '../textField';
 
